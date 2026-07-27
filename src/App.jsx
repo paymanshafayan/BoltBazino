@@ -29,23 +29,15 @@ export default function App() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'brightness(0.4) saturate(1.2) contrast(1.1)',
+            filter: 'brightness(0.6) saturate(1.2) contrast(1.1)',
           }}
         />
-        {/* Dark overlay for readability */}
+        {/* Subtle vignette for readability */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(180deg, rgba(8,8,12,0.7) 0%, rgba(8,8,12,0.55) 50%, rgba(8,8,12,0.85) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 30%, rgba(8,8,12,0.5) 100%)',
         }} />
       </div>
-
-      {/* Subtle gold grid background overlay */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 1,
-        backgroundImage: 'linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px)',
-        backgroundSize: '50px 50px',
-        pointerEvents: 'none',
-      }} />
 
       <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
         <Header />
