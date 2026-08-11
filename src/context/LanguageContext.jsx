@@ -1,16 +1,6 @@
-// Bilingual (fa/en) language context — mirrors bazino's useLanguage() interface
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
-type Language = 'fa' | 'en';
-
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: string, fallback?: string) => string;
-  dir: 'rtl' | 'ltr';
-}
-
-const translations: Record<string, { fa: string; en: string }> = {
+const translations = {
   'brand.name': { fa: 'بازینو', en: 'BAZINO' },
   'brand.subtitle': { fa: 'سالن گیمینگ', en: 'GAMING ARENA' },
 
@@ -61,17 +51,17 @@ const translations: Record<string, { fa: string; en: string }> = {
   'leaderboard.you': { fa: 'شما', en: 'YOU' },
 };
 
-const LanguageContext = createContext<LanguageContextType>({
+const LanguageContext = createContext({
   language: 'fa',
   setLanguage: () => {},
-  t: (_key: string, fallback?: string) => fallback || '',
+  t: (_key, fallback) => fallback || '',
   dir: 'rtl',
 });
 
-export function LanguageProvider({ children, initialLang = 'fa' }: { children: React.ReactNode; initialLang?: Language }) {
-  const [language, setLanguage] = useState<Language>(initialLang);
+export function LanguageProvider({ children, initialLang = 'fa' }) {
+  const [language, setLanguage] = useState(initialLang);
 
-  const t = useCallback((key: string, fallback?: string) => {
+  const t = useCallback((key, fallback) => {
     const entry = translations[key];
     if (entry) return entry[language];
     return fallback || key;

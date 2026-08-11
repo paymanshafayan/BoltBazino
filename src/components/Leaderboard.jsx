@@ -1,13 +1,23 @@
 import React from 'react';
-import { leaderboard } from '../data';
+import { COLORS } from '../data/theme';
+import { useLanguage } from '../context/LanguageContext';
 import { Panel, PanelHeader, HexBadge } from './ui';
 
-export default function Leaderboard() {
+export default function Leaderboard({ tournaments = [], user }) {
+  const { t, language } = useLanguage();
+
+  const entries = [
+    { rank: 1, name: 'PhantomX', game: 'ARES', score: 98620, rankColor: '#d4af37', isYou: false, avatar: '/images/avatar-2.png' },
+    { rank: 2, name: 'CyberRogue', game: 'ARES', score: 87540, rankColor: '#c0c0c0', isYou: false, avatar: '/images/avatar-3.png' },
+    { rank: 3, name: 'ShadowStrike', game: 'ARES', score: 76310, rankColor: '#cd7f32', isYou: false, avatar: '/images/avatar-4.png' },
+    { rank: 4, name: user?.username || 'NovaX', game: 'ARES', score: 65420, rankColor: '#d4af37', isYou: true, avatar: '/images/avatar-1.png' },
+  ];
+
   return (
     <Panel style={{ flex: 1 }}>
-      <PanelHeader title="LEADERBOARD" onViewAll />
+      <PanelHeader title={t('panel.leaderboard', 'LEADERBOARD')} onViewAll />
       <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', padding: '8px' }}>
-        {leaderboard.map((entry) => (
+        {entries.map((entry) => (
           <div
             key={entry.rank}
             style={{
@@ -21,7 +31,6 @@ export default function Leaderboard() {
               cursor: 'pointer',
             }}
           >
-            {/* Rank */}
             <div style={{
               fontFamily: 'Orbitron,monospace',
               fontSize: '11px',
@@ -34,8 +43,6 @@ export default function Leaderboard() {
             }}>
               {entry.rank}
             </div>
-
-            {/* Avatar */}
             <img
               src={entry.avatar}
               alt={entry.name}
@@ -47,26 +54,18 @@ export default function Leaderboard() {
                 flexShrink: 0,
               }}
             />
-
-            {/* Name */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <span style={{ fontFamily: 'Orbitron,monospace', color: '#e8e8e8', fontSize: '9px', fontWeight: '600' }}>{entry.name}</span>
+              <span style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '9px', fontWeight: '600' }}>{entry.name}</span>
               {entry.isYou && (
-                <span style={{ fontFamily: 'Rajdhani,sans-serif', color: '#d4af37', fontSize: '9px', marginLeft: '4px' }}>(You)</span>
+                <span style={{ fontFamily: 'Rajdhani,sans-serif', color: COLORS.gold, fontSize: '9px', marginLeft: '4px' }}>({t('leaderboard.you', 'YOU')})</span>
               )}
             </div>
-
-            {/* Game tag */}
-            <div style={{ color: '#5a5a6a', fontFamily: 'Orbitron,monospace', fontSize: '8px', marginRight: '6px' }}>{entry.game}</div>
-
-            {/* Score */}
-            <div style={{ fontFamily: 'Orbitron,monospace', color: '#e8e8e8', fontSize: '10px', fontWeight: '600', flexShrink: 0 }}>
+            <div style={{ color: COLORS.textMuted, fontFamily: 'Orbitron,monospace', fontSize: '8px', marginRight: '6px' }}>{entry.game}</div>
+            <div style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '10px', fontWeight: '600', flexShrink: 0 }}>
               {entry.score.toLocaleString()}
             </div>
-
-            {/* Hex badge */}
             <div style={{ flexShrink: 0, marginLeft: '2px' }}>
-              <HexBadge color={entry.isYou ? '#f0c75e' : '#a07d20'} size={14} />
+              <HexBadge color={entry.isYou ? COLORS.goldBright : '#a07d20'} size={14} />
             </div>
           </div>
         ))}

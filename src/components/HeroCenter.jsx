@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { COLORS, quickActions, HERO_IMAGE } from '../data';
+import { COLORS, HERO_IMAGE, quickActions } from '../data/theme';
+import { useLanguage } from '../context/LanguageContext';
 
 function useCountdown(targetMs) {
   const [now, setNow] = useState(Date.now());
@@ -40,10 +41,30 @@ function TimeUnit({ value, label }) {
   );
 }
 
-export default function HeroCenter() {
-  // Target ~5 days from now
-  const [target] = useState(() => Date.now() + 5 * 86400000 + 3 * 3600000 + 42 * 60000);
+export default function HeroCenter({ tournaments = [], onNavigate }) {
+  const { language, t } = useLanguage();
+
+  const featured = tournaments.find(t => t.status === 'Upcoming' || t.status === 'Active') || tournaments[0];
+
+  const title = featured?.title || (language === 'fa' ? 'مسابقات قهرمانی آرنا' : 'ARENA CHAMPIONSHIP');
+  const prize = featured?.registrationFee || 25000;
+
+  const [target] = useState(() => {
+    if (featured?.startDate) {
+      const parsed = new Date(featured.startDate).getTime();
+      if (!isNaN(parsed)) return parsed;
+    }
+    return Date.now() + 5 * 86400000 + 3 * 3600000 + 42 * 60000;
+  });
   const { d, h, m, s } = useCountdown(target);
+
+  const countdownLabel = language === 'fa' ? 'شروع مسابقات' : 'TOURNAMENT STARTS IN';
+  const daysLabel = language === 'fa' ? 'روز' : 'DAYS';
+  const hoursLabel = language === 'fa' ? 'ساعت' : 'HOURS';
+  const minsLabel = language === 'fa' ? 'دقیقه' : 'MINUTES';
+  const secsLabel = language === 'fa' ? 'ثانیه' : 'SECONDS';
+  const joinLabel = language === 'fa' ? 'همین حالا' : 'JOIN NOW';
+  const prizeLabel = language === 'fa' ? 'مجموع جوایز' : 'PRIZE POOL';
 
   return (
     <div style={{ flex: 1, position: 'relative', overflow: 'hidden', borderRadius: '2px' }}>
@@ -130,7 +151,7 @@ export default function HeroCenter() {
           }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f0c75e', boxShadow: '0 0 8px rgba(240,199,94,0.9)', animation: 'blink 1.5s infinite' }} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '9px', color: '#f0c75e', letterSpacing: '0.3em', fontWeight: '700', textShadow: '0 0 8px rgba(212,175,55,0.6)' }}>
-              TOURNAMENT STARTS IN
+              {countdownLabel.toUpperCase()}
             </span>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f0c75e', boxShadow: '0 0 8px rgba(240,199,94,0.9)', animation: 'blink 1.5s infinite' }} />
           </div>
@@ -140,13 +161,13 @@ export default function HeroCenter() {
             position: 'absolute', top: '48px', left: '50%', transform: 'translateX(-50%)',
             display: 'flex', gap: '10px', alignItems: 'flex-start',
           }}>
-            <TimeUnit value={d} label="DAYS" />
+            <TimeUnit value={d} label={daysLabel} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', color: 'rgba(212,175,55,0.5)', fontWeight: '900', marginTop: '10px' }}>:</span>
-            <TimeUnit value={h} label="HOURS" />
+            <TimeUnit value={h} label={hoursLabel} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', color: 'rgba(212,175,55,0.5)', fontWeight: '900', marginTop: '10px' }}>:</span>
-            <TimeUnit value={m} label="MINUTES" />
+            <TimeUnit value={m} label={minsLabel} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', color: 'rgba(212,175,55,0.5)', fontWeight: '900', marginTop: '10px' }}>:</span>
-            <TimeUnit value={s} label="SECONDS" />
+            <TimeUnit value={s} label={secsLabel} />
           </div>
 
           {/* Tournament title + prize */}
@@ -156,34 +177,36 @@ export default function HeroCenter() {
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
           }}>
             <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', fontWeight: '900', color: '#f0c75e', letterSpacing: '0.1em', textShadow: '0 0 18px rgba(212,175,55,0.8), 0 0 6px rgba(240,199,94,0.9)' }}>
-              ARENA CHAMPIONSHIP
+              {title.toUpperCase()}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#f0c75e" stroke="none">
                 <circle cx="12" cy="12" r="10" />
                 <text x="12" y="16" textAnchor="middle" fill="#5a3e00" fontSize="12" fontWeight="900" fontFamily="Orbitron,monospace">$</text>
               </svg>
-              <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '14px', color: '#f0c75e', fontWeight: '700', letterSpacing: '0.05em' }}>25,000 PRIZE POOL</span>
+              <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '14px', color: '#f0c75e', fontWeight: '700', letterSpacing: '0.05em' }}>{prize.toLocaleString()} {prizeLabel.toUpperCase()}</span>
             </div>
           </div>
 
           {/* Join button */}
-          <button style={{
-            position: 'absolute', bottom: '72px', right: '20px',
-            padding: '10px 24px',
-            background: 'rgba(212,175,55,0.9)',
-            border: 'none',
-            cursor: 'pointer',
-            fontFamily: 'Orbitron,monospace',
-            fontSize: '10px',
-            letterSpacing: '0.2em',
-            color: '#0a0a0f',
-            fontWeight: '900',
-            clipPath: 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
-            boxShadow: '0 0 18px rgba(212,175,55,0.6)',
-            transition: 'all 0.2s',
-          }}>
-            JOIN NOW
+          <button
+            onClick={() => onNavigate && onNavigate('tournaments')}
+            style={{
+              position: 'absolute', bottom: '72px', right: '20px',
+              padding: '10px 24px',
+              background: 'rgba(212,175,55,0.9)',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'Orbitron,monospace',
+              fontSize: '10px',
+              letterSpacing: '0.2em',
+              color: '#0a0a0f',
+              fontWeight: '900',
+              clipPath: 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
+              boxShadow: '0 0 18px rgba(212,175,55,0.6)',
+              transition: 'all 0.2s',
+            }}>
+            {joinLabel.toUpperCase()}
           </button>
 
           {/* Quick action bar */}
@@ -223,4 +246,3 @@ export default function HeroCenter() {
     </div>
   );
 }
-

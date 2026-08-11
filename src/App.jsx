@@ -1,72 +1,46 @@
-import React from 'react';
-import Header from './components/Header';
-import StatusBar from './components/StatusBar';
-import { BG_IMAGE } from './data';
+import React, { useState, useEffect } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
+import AresEliteHome from './components/AresEliteHome';
+import { fetchAllData } from './data/api';
 
 export default function App() {
-  return (
-    <div style={{
-      height: '100vh',
-      width: '100vw',
-      fontFamily: "'Rajdhani', sans-serif",
-      color: '#e8e8e8',
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-      background: '#0a0a0f',
-    }}>
-      {/* Background image layer */}
+  const [data, setData] = useState(null);
+  const [activeTab, setActiveTab] = useState('home');
+
+  useEffect(() => {
+    fetchAllData().then(setData);
+  }, []);
+
+  if (!data) {
+    return (
       <div style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 0,
+        height: '100vh', width: '100vw',
+        background: '#0a0a0f',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'Orbitron, monospace',
+        color: '#d4af37',
+        fontSize: '14px',
+        letterSpacing: '0.2em',
       }}>
-        <img
-          src={BG_IMAGE}
-          alt=""
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: 'brightness(0.6) saturate(1.2) contrast(1.1)',
-          }}
-        />
-        {/* Subtle vignette for readability */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse at center, transparent 30%, rgba(8,8,12,0.5) 100%)',
-        }} />
+        LOADING...
       </div>
+    );
+  }
 
-      <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <Header />
-
-        {/* Main content */}
-        <div style={{
-          flex: 1,
-          display: 'flex',
-          gap: '8px',
-          padding: '8px',
-          overflow: 'hidden',
-          position: 'relative',
-          minHeight: 0,
-        }}>
-          {/* Left column */}
-          <div style={{ width: '230px', display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0, minHeight: 0 }}>
-          </div>
-
-          {/* Center column */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px', minWidth: 0, minHeight: 0 }}>
-          </div>
-
-          {/* Right column */}
-          <div style={{ width: '290px', display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0, minHeight: 0, overflowY: 'auto' }}>
-          </div>
-        </div>
-
-        <StatusBar />
-      </div>
-    </div>
+  return (
+    <LanguageProvider initialLang="fa">
+      <AresEliteHome
+        user={data.user}
+        tournaments={data.tournaments}
+        sliders={data.sliders}
+        systems={data.systems}
+        cafeItems={data.cafeItems}
+        accessories={data.accessories}
+        articles={data.articles}
+        settings={data.settings}
+        activeTab={activeTab}
+        onNavigate={setActiveTab}
+      />
+    </LanguageProvider>
   );
 }

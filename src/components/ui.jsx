@@ -1,5 +1,5 @@
 import React from 'react';
-import { CLIP, COLORS } from '../data';
+import { CLIP, COLORS } from '../data/theme';
 
 const GOLD_GRADIENT = 'linear-gradient(135deg, rgba(240,199,94,0.95) 0%, rgba(212,175,55,0.8) 35%, rgba(180,140,30,0.7) 70%, rgba(240,199,94,0.95) 100%)';
 
@@ -50,7 +50,7 @@ export function HexBadge({ color = '#d4af37', size = 14 }) {
   );
 }
 
-export function PanelHeader({ title, onViewAll }) {
+export function PanelHeader({ title, onViewAll, viewAllText = 'VIEW ALL' }) {
   return (
     <div style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -59,8 +59,8 @@ export function PanelHeader({ title, onViewAll }) {
     }}>
       <span style={{ fontFamily: 'Orbitron,monospace', color: '#e8e8e8', fontSize: '10px', fontWeight: '700', letterSpacing: '0.18em' }}>{title}</span>
       {onViewAll && (
-        <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#d4af37', fontFamily: 'Orbitron,monospace', fontSize: '8px', letterSpacing: '0.12em', display: 'flex', alignItems: 'center', gap: '3px' }}>
-          VIEW ALL
+        <button onClick={onViewAll} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#d4af37', fontFamily: 'Orbitron,monospace', fontSize: '8px', letterSpacing: '0.12em', display: 'flex', alignItems: 'center', gap: '3px' }}>
+          {viewAllText}
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       )}

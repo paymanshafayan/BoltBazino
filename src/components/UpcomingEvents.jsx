@@ -1,5 +1,6 @@
 import React from 'react';
-import { events } from '../data';
+import { COLORS } from '../data/theme';
+import { useLanguage } from '../context/LanguageContext';
 import { Panel, PanelHeader } from './ui';
 
 const ICONS = {
@@ -10,14 +11,33 @@ const ICONS = {
 
 const EVENT_ICONS = [ICONS.shield, ICONS.zap, ICONS.swords];
 
-export default function UpcomingEvents() {
+export default function UpcomingEvents({ tournaments = [], onNavigate }) {
+  const { t, language } = useLanguage();
+
+  const events = (tournaments.length > 0 ? tournaments.slice(0, 3) : [
+    { id: 'e1', title: 'ARENA CHAMPIONSHIP', game: 'CS2', registrationFee: 25000, startDate: '2026-08-24', status: 'Upcoming' },
+    { id: 'e2', title: 'CYBER WARFARE', game: 'Valorant', registrationFee: 15000, startDate: '2026-09-05', status: 'Upcoming' },
+    { id: 'e3', title: 'CLAN SHOWDOWN', game: 'Dota 2', registrationFee: 20000, startDate: '2026-09-18', status: 'Active' },
+  ]).map((evt, i) => ({
+    id: evt.id,
+    name: evt.title || evt.name,
+    game: evt.game || '',
+    date: evt.startDate || evt.date,
+    reward: evt.registrationFee || evt.reward || 0,
+    status: evt.status || 'Upcoming',
+    iconBg: `rgba(212,175,55,0.15)`,
+    iconBorder: `rgba(212,175,55,0.5)`,
+    iconColor: COLORS.gold,
+  }));
+
   return (
     <Panel style={{ flexShrink: 0 }}>
-      <PanelHeader title="UPCOMING EVENTS" onViewAll />
+      <PanelHeader title={t('panel.upcomingEvents', 'UPCOMING EVENTS')} onViewAll={() => onNavigate && onNavigate('tournaments')} />
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '8px' }}>
         {events.map((event, i) => (
           <div
             key={event.id}
+            onClick={() => onNavigate && onNavigate('tournaments')}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -29,7 +49,6 @@ export default function UpcomingEvents() {
               cursor: 'pointer',
             }}
           >
-            {/* Icon badge */}
             <div style={{
               width: '34px', height: '34px', flexShrink: 0,
               background: event.iconBg,
@@ -39,25 +58,28 @@ export default function UpcomingEvents() {
               boxShadow: `0 0 10px ${event.iconBg}`,
             }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={event.iconColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d={EVENT_ICONS[i]} />
+                <path d={EVENT_ICONS[i % 3]} />
               </svg>
             </div>
-
-            {/* Info */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: 'Orbitron,monospace', color: '#e8e8e8', fontSize: '9px', fontWeight: '700', letterSpacing: '0.1em', lineHeight: 1 }}>{event.name}</div>
-              <div style={{ color: '#5a5a6a', fontSize: '9px', fontFamily: 'Rajdhani,sans-serif', marginTop: '3px', letterSpacing: '0.05em' }}>{event.date}</div>
+              <div style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '9px', fontWeight: '700', letterSpacing: '0.1em', lineHeight: 1 }}>{event.name}</div>
+              <div style={{ color: COLORS.textMuted, fontSize: '9px', fontFamily: 'Rajdhani,sans-serif', marginTop: '3px', letterSpacing: '0.05em' }}>
+                {event.game ? `${event.game} — ` : ''}{event.date}
+                {event.status === 'Active' && (
+                  <span style={{ color: COLORS.green, marginLeft: '4px', fontFamily: 'Orbitron,monospace', fontSize: '7px' }}>● LIVE</span>
+                )}
+              </div>
             </div>
-
-            {/* Reward */}
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ color: '#5a5a6a', fontSize: '7.5px', fontFamily: 'Orbitron,monospace', letterSpacing: '0.1em' }}>REWARD</div>
+              <div style={{ color: COLORS.textMuted, fontSize: '7.5px', fontFamily: 'Orbitron,monospace', letterSpacing: '0.1em' }}>
+                {language === 'fa' ? 'جایزه' : 'REWARD'}
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '3px', justifyContent: 'flex-end', marginTop: '2px' }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="#f0c75e" stroke="none">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill={COLORS.goldBright} stroke="none">
                   <circle cx="12" cy="12" r="10" />
                   <text x="12" y="16" textAnchor="middle" fill="#5a3e00" fontSize="11" fontWeight="700">$</text>
                 </svg>
-                <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '10px', fontWeight: '700', color: '#f0c75e' }}>{event.reward.toLocaleString()}</span>
+                <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '10px', fontWeight: '700', color: COLORS.goldBright }}>{event.reward.toLocaleString()}</span>
               </div>
             </div>
           </div>
