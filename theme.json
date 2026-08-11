@@ -1,0 +1,26 @@
+{
+  "name": "طلایی نخبگان آرس",
+  "nameEn": "Ares Elite Gold",
+  "id": "ares-elite-gold",
+  "version": "1.0.0",
+  "author": "Bazino Theme Studio",
+  "description": "قالب داشبورد گیمینگ با تم طلایی-مشکی و طراحی زاویه‌دار سایبرپانک. مناسب سالن‌های گیمینگ VIP با نمایش آمار زنده، مسابقات و رتبه‌بندی.",
+  "type": "custom",
+  "primaryColor": "#d4af37",
+  "primaryHover": "#f0c75e",
+  "darkBg": "#0a0a0f",
+  "darkCard": "#111118",
+  "accentRed": "#dc2626",
+  "fonts": ["Orbitron", "Rajdhani", "Vazirmatn"],
+  "features": [
+    "dashboard-layout",
+    "live-stats",
+    "tournament-display",
+    "leaderboard",
+    "bilingual-fa-en",
+    "angular-clip-design",
+    "gold-neon-glow"
+  ],
+  "layout": "dashboard",
+  "previewImage": "/images/hero.png"
+}

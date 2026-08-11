@@ -2,6 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== ARES ELITE GOLD — Bazino Theme Variables ===== */
+:root {
+  --primary-color: #d4af37;
+  --primary-hover-color: #f0c75e;
+  --accent-red-color: #dc2626;
+  --dark-bg-color: #0a0a0f;
+  --dark-card-color: #111118;
+
+  --theme-bg: #0a0a0f;
+  --theme-card-bg: #111118;
+  --theme-card-border: rgba(212, 175, 55, 0.3);
+  --theme-card-radius: 0;
+  --theme-primary: #d4af37;
+  --theme-btn-skew: 0deg;
+  --theme-btn-radius: 0;
+
+  --ares-gold: #d4af37;
+  --ares-gold-bright: #f0c75e;
+  --ares-gold-glow: rgba(212, 175, 55, 0.35);
+  --ares-panel: #111118;
+  --ares-panel-light: #1a1a24;
+  --ares-text: #e8e8e8;
+  --ares-text-secondary: #a0a0b0;
+  --ares-text-muted: #5a5a6a;
+  --ares-green: #22c55e;
+  --ares-orange: #e8730c;
+  --ares-amber: #f59e0b;
+}
+
+body[data-theme='ares-elite-gold'] {
+  --primary-color: #d4af37;
+  --primary-hover-color: #f0c75e;
+  --accent-red-color: #dc2626;
+  --dark-bg-color: #0a0a0f;
+  --dark-card-color: #111118;
+
+  --theme-bg: #0a0a0f;
+  --theme-card-bg: #111118;
+  --theme-card-border: rgba(212, 175, 55, 0.3);
+  --theme-card-radius: 0;
+  --theme-primary: #d4af37;
+  --theme-btn-skew: 0deg;
+  --theme-btn-radius: 0;
+
+  --ares-gold: #d4af37;
+  --ares-gold-bright: #f0c75e;
+  --ares-gold-glow: rgba(212, 175, 55, 0.35);
+  --ares-panel: #111118;
+  --ares-panel-light: #1a1a24;
+  --ares-text: #e8e8e8;
+  --ares-text-secondary: #a0a0b0;
+  --ares-text-muted: #5a5a6a;
+  --ares-green: #22c55e;
+  --ares-orange: #e8730c;
+  --ares-amber: #f59e0b;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -10,9 +67,9 @@
   }
 
   html, body {
-    background-color: #0a0a0f;
-    color: #e8e8e8;
-    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--dark-bg-color, #0a0a0f);
+    color: var(--ares-text, #e8e8e8);
+    font-family: 'Rajdhani', 'Vazirmatn', sans-serif;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -63,15 +120,27 @@
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(212,175,55,0.5); }
+  0%, 100% { box-shadow: 0 0 8px var(--ares-gold-glow, rgba(212,175,55,0.5)); }
   50% { box-shadow: 0 0 16px rgba(212,175,55,0.8); }
 }
 
-/* Custom scrollbar - gold themed */
+/* Custom scrollbar — gold themed */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: #111118; }
-::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.35); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,0.55); }
+::-webkit-scrollbar-track { background: var(--ares-panel, #111118); }
+::-webkit-scrollbar-thumb { background: var(--ares-gold, #d4af37); opacity: 0.35; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ares-gold-bright, #f0c75e); }
 
-.font-orbitron { font-family: 'Orbitron', monospace; }
-.font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+.font-orbitron { font-family: 'Orbitron', 'Vazirmatn', monospace; }
+.font-rajdhani { font-family: 'Rajdhani', 'Vazirmatn', sans-serif; }
+.font-vazir { font-family: 'Vazirmatn', sans-serif; }
+
+/* Bazino utility classes for theme compatibility */
+.neon-text-glow {
+  text-shadow: 0 0 10px var(--primary-color, #d4af37), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+.neon-border-glow {
+  box-shadow: 0 0 15px var(--primary-color, #d4af37);
+}
+.app-bg-main {
+  background: var(--dark-bg-color, #0a0a0f);
+}
