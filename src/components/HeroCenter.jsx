@@ -16,7 +16,7 @@ function useCountdown(targetMs) {
   return { d, h, m, s };
 }
 
-function TimeUnit({ value, label }) {
+function TimeUnit({ value, label, language }) {
   const padded = String(value).padStart(2, '0');
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
@@ -161,13 +161,13 @@ export default function HeroCenter({ tournaments = [], onNavigate }) {
             position: 'absolute', top: '48px', left: '50%', transform: 'translateX(-50%)',
             display: 'flex', gap: '10px', alignItems: 'flex-start',
           }}>
-            <TimeUnit value={d} label={daysLabel} />
+            <TimeUnit value={d} label={daysLabel} language={language} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', color: 'rgba(212,175,55,0.5)', fontWeight: '900', marginTop: '10px' }}>:</span>
-            <TimeUnit value={h} label={hoursLabel} />
+            <TimeUnit value={h} label={hoursLabel} language={language} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', color: 'rgba(212,175,55,0.5)', fontWeight: '900', marginTop: '10px' }}>:</span>
-            <TimeUnit value={m} label={minsLabel} />
+            <TimeUnit value={m} label={minsLabel} language={language} />
             <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', color: 'rgba(212,175,55,0.5)', fontWeight: '900', marginTop: '10px' }}>:</span>
-            <TimeUnit value={s} label={secsLabel} />
+            <TimeUnit value={s} label={secsLabel} language={language} />
           </div>
 
           {/* Tournament title + prize */}
