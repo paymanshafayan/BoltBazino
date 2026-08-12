@@ -57,7 +57,7 @@ export default function Leaderboard({ tournaments = [], user }) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <span style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '9px', fontWeight: '600' }}>{entry.name}</span>
               {entry.isYou && (
-                <span style={{ fontFamily: 'Rajdhani,sans-serif', color: COLORS.gold, fontSize: '9px', marginLeft: '4px' }}>({t('leaderboard.you', 'YOU')})</span>
+                <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Rajdhani,sans-serif', color: COLORS.gold, fontSize: language === 'fa' ? 11 : 9, marginLeft: '4px' }}>({t('leaderboard.you', 'YOU')})</span>
               )}
             </div>
             <div style={{ color: COLORS.textMuted, fontFamily: 'Orbitron,monospace', fontSize: '8px', marginRight: '6px' }}>{entry.game}</div>

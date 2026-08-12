@@ -62,8 +62,8 @@ export default function UpcomingEvents({ tournaments = [], onNavigate }) {
               </svg>
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '9px', fontWeight: '700', letterSpacing: '0.1em', lineHeight: 1 }}>{event.name}</div>
-              <div style={{ color: COLORS.textMuted, fontSize: '9px', fontFamily: 'Rajdhani,sans-serif', marginTop: '3px', letterSpacing: '0.05em' }}>
+              <div style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', color: COLORS.text, fontSize: language === 'fa' ? 12 : 9, fontWeight: '700', letterSpacing: language === 'fa' ? '0' : '0.1em', lineHeight: 1.3 }}>{event.name}</div>
+              <div style={{ color: COLORS.textMuted, fontSize: language === 'fa' ? 11 : 9, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Rajdhani,sans-serif', marginTop: '3px', letterSpacing: language === 'fa' ? '0' : '0.05em' }}>
                 {event.game ? `${event.game} — ` : ''}{event.date}
                 {event.status === 'Active' && (
                   <span style={{ color: COLORS.green, marginLeft: '4px', fontFamily: 'Orbitron,monospace', fontSize: '7px' }}>● LIVE</span>
@@ -71,7 +71,7 @@ export default function UpcomingEvents({ tournaments = [], onNavigate }) {
               </div>
             </div>
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ color: COLORS.textMuted, fontSize: '7.5px', fontFamily: 'Orbitron,monospace', letterSpacing: '0.1em' }}>
+              <div style={{ color: COLORS.textMuted, fontSize: language === 'fa' ? 11 : 7.5, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', letterSpacing: language === 'fa' ? '0' : '0.1em' }}>
                 {language === 'fa' ? 'جایزه' : 'REWARD'}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '3px', justifyContent: 'flex-end', marginTop: '2px' }}>

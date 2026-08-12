@@ -51,7 +51,7 @@ export default function PlayerStats({ user }) {
 
         <div style={{ flexShrink: 0 }}>
           <div style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '13px', fontWeight: '700', lineHeight: 1 }}>{player.name}</div>
-          <div style={{ color: COLORS.gold, fontSize: '9.5px', fontFamily: 'Rajdhani,sans-serif', letterSpacing: '0.1em', marginTop: '3px' }}>{player.rank}</div>
+          <div style={{ color: COLORS.gold, fontSize: language === 'fa' ? 12 : 9.5, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Rajdhani,sans-serif', letterSpacing: language === 'fa' ? '0' : '0.1em', marginTop: '3px' }}>{player.rank}</div>
           <div style={{ color: COLORS.textMuted, fontSize: '8.5px', fontFamily: 'Orbitron,monospace', marginTop: '4px', letterSpacing: '0.05em' }}>
             XP {player.xp.toLocaleString()} / {player.xpMax.toLocaleString()}
           </div>
@@ -66,7 +66,7 @@ export default function PlayerStats({ user }) {
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={COLORS.gold} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d={stat.icon} />
                 </svg>
-                <span style={{ color: COLORS.textMuted, fontFamily: 'Orbitron,monospace', fontSize: '7.5px', letterSpacing: '0.1em' }}>{stat.label}</span>
+                <span style={{ color: COLORS.textMuted, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 10 : 7.5, letterSpacing: language === 'fa' ? '0' : '0.1em' }}>{stat.label}</span>
               </div>
               <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '15px', fontWeight: '700', color: COLORS.text, marginTop: '4px' }}>{stat.value}</div>
             </div>

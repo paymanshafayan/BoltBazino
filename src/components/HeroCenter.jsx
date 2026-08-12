@@ -36,7 +36,7 @@ function TimeUnit({ value, label }) {
       }}>
         {padded}
       </div>
-      <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '7px', color: '#a07d20', letterSpacing: '0.2em' }}>{label}</span>
+      <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 10 : 7, color: '#a07d20', letterSpacing: language === 'fa' ? '0.05em' : '0.2em' }}>{label}</span>
     </div>
   );
 }
@@ -150,8 +150,8 @@ export default function HeroCenter({ tournaments = [], onNavigate }) {
             display: 'flex', alignItems: 'center', gap: '8px',
           }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f0c75e', boxShadow: '0 0 8px rgba(240,199,94,0.9)', animation: 'blink 1.5s infinite' }} />
-            <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '9px', color: '#f0c75e', letterSpacing: '0.3em', fontWeight: '700', textShadow: '0 0 8px rgba(212,175,55,0.6)' }}>
-              {countdownLabel.toUpperCase()}
+            <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 12 : 9, color: '#f0c75e', letterSpacing: language === 'fa' ? '0.1em' : '0.3em', fontWeight: '700', textShadow: '0 0 8px rgba(212,175,55,0.6)' }}>
+              {language === 'fa' ? countdownLabel : countdownLabel.toUpperCase()}
             </span>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f0c75e', boxShadow: '0 0 8px rgba(240,199,94,0.9)', animation: 'blink 1.5s infinite' }} />
           </div>
@@ -176,15 +176,15 @@ export default function HeroCenter({ tournaments = [], onNavigate }) {
             textAlign: 'center',
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
           }}>
-            <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '24px', fontWeight: '900', color: '#f0c75e', letterSpacing: '0.1em', textShadow: '0 0 18px rgba(212,175,55,0.8), 0 0 6px rgba(240,199,94,0.9)' }}>
-              {title.toUpperCase()}
+            <div style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 22 : 24, fontWeight: language === 'fa' ? 700 : 900, color: '#f0c75e', letterSpacing: language === 'fa' ? '0' : '0.1em', textShadow: '0 0 18px rgba(212,175,55,0.8), 0 0 6px rgba(240,199,94,0.9)' }}>
+              {language === 'fa' ? title : title.toUpperCase()}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#f0c75e" stroke="none">
                 <circle cx="12" cy="12" r="10" />
                 <text x="12" y="16" textAnchor="middle" fill="#5a3e00" fontSize="12" fontWeight="900" fontFamily="Orbitron,monospace">$</text>
               </svg>
-              <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '14px', color: '#f0c75e', fontWeight: '700', letterSpacing: '0.05em' }}>{prize.toLocaleString()} {prizeLabel.toUpperCase()}</span>
+              <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 14 : 14, color: '#f0c75e', fontWeight: '700', letterSpacing: language === 'fa' ? '0' : '0.05em' }}>{prize.toLocaleString()} {language === 'fa' ? prizeLabel : prizeLabel.toUpperCase()}</span>
             </div>
           </div>
 
@@ -197,16 +197,16 @@ export default function HeroCenter({ tournaments = [], onNavigate }) {
               background: 'rgba(212,175,55,0.9)',
               border: 'none',
               cursor: 'pointer',
-              fontFamily: 'Orbitron,monospace',
-              fontSize: '10px',
-              letterSpacing: '0.2em',
+              fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace',
+              fontSize: language === 'fa' ? 13 : 10,
+              letterSpacing: language === 'fa' ? '0' : '0.2em',
               color: '#0a0a0f',
-              fontWeight: '900',
+              fontWeight: language === 'fa' ? 700 : 900,
               clipPath: 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
               boxShadow: '0 0 18px rgba(212,175,55,0.6)',
               transition: 'all 0.2s',
             }}>
-            {joinLabel.toUpperCase()}
+            {language === 'fa' ? joinLabel : joinLabel.toUpperCase()}
           </button>
 
           {/* Quick action bar */}

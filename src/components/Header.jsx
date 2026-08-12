@@ -37,7 +37,7 @@ export default function Header({ user, activeTab, onNavigate }) {
         />
         <div>
           <div style={{ fontFamily: 'Orbitron,monospace', color: COLORS.goldBright, fontWeight: '900', fontSize: '15px', letterSpacing: '0.18em', lineHeight: 1, textShadow: `0 0 10px ${COLORS.goldGlow}` }}>BAZINO</div>
-          <div style={{ fontFamily: 'Orbitron,monospace', color: '#a07d20', fontSize: '7px', letterSpacing: '0.3em', lineHeight: 1, marginTop: '3px' }}>{language === 'fa' ? 'سالن گیمینگ' : 'GAMING ARENA'}</div>
+          <div style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', color: '#a07d20', fontSize: language === 'fa' ? 10 : 7, letterSpacing: language === 'fa' ? '0.05em' : '0.3em', lineHeight: 1, marginTop: '3px' }}>{language === 'fa' ? 'سالن گیمینگ' : 'GAMING ARENA'}</div>
         </div>
       </div>
 
@@ -65,7 +65,7 @@ export default function Header({ user, activeTab, onNavigate }) {
               }}
             >
               <SvgIcon path={item.svgPath} size={18} color={isActive ? COLORS.goldBright : COLORS.textMuted} />
-              <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '8px', letterSpacing: '0.18em', lineHeight: 1 }}>{label}</span>
+              <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 11 : 8, letterSpacing: language === 'fa' ? '0.02em' : '0.18em', lineHeight: 1 }}>{label}</span>
               {isActive && (
                 <div style={{
                   position: 'absolute',
@@ -117,7 +117,7 @@ export default function Header({ user, activeTab, onNavigate }) {
           </div>
           <div>
             <div style={{ fontFamily: 'Orbitron,monospace', color: COLORS.text, fontSize: '12px', fontWeight: '700', lineHeight: 1 }}>{username}</div>
-            <div style={{ color: COLORS.gold, fontSize: '10px', lineHeight: 1, marginTop: '3px', fontFamily: 'Rajdhani,sans-serif', letterSpacing: '0.08em' }}>
+            <div style={{ color: COLORS.gold, fontSize: language === 'fa' ? 12 : 10, lineHeight: 1.3, marginTop: '3px', fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Rajdhani,sans-serif', letterSpacing: language === 'fa' ? '0' : '0.08em' }}>
               {user?.loyaltyPoints ? `${user.loyaltyPoints.toLocaleString()} ${language === 'fa' ? 'امتیاز' : 'PTS'}` : (language === 'fa' ? 'مهمان' : 'Guest')}
             </div>
           </div>

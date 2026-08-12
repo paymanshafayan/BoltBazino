@@ -51,13 +51,17 @@ export function HexBadge({ color = '#d4af37', size = 14 }) {
 }
 
 export function PanelHeader({ title, onViewAll, viewAllText = 'VIEW ALL' }) {
+  const isFa = /[\u0600-\u06FF]/.test(title);
+  const fontFam = isFa ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace';
+  const fontSize = isFa ? 12 : 10;
+  const letterSpacing = isFa ? '0' : '0.18em';
   return (
     <div style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '10px 14px 8px',
       borderBottom: '1px solid rgba(212,175,55,0.15)',
     }}>
-      <span style={{ fontFamily: 'Orbitron,monospace', color: '#e8e8e8', fontSize: '10px', fontWeight: '700', letterSpacing: '0.18em' }}>{title}</span>
+      <span style={{ fontFamily: fontFam, color: '#e8e8e8', fontSize, fontWeight: '700', letterSpacing }}>{title}</span>
       {onViewAll && (
         <button onClick={onViewAll} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#d4af37', fontFamily: 'Orbitron,monospace', fontSize: '8px', letterSpacing: '0.12em', display: 'flex', alignItems: 'center', gap: '3px' }}>
           {viewAllText}

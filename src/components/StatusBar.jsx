@@ -39,21 +39,21 @@ export default function StatusBar({ onlineCount = 24789, ping = 12 }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <div style={{ width: '7px', height: '7px', background: COLORS.green, borderRadius: '50%', boxShadow: '0 0 8px rgba(34,197,94,0.8)', animation: 'blink 2s infinite' }} />
-          <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '9px', color: COLORS.textMuted, letterSpacing: '0.12em' }}>{t('status.online', 'ONLINE')}</span>
+          <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 11 : 9, color: COLORS.textMuted, letterSpacing: language === 'fa' ? '0' : '0.12em' }}>{t('status.online', 'ONLINE')}</span>
           <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '10px', color: COLORS.goldBright, fontWeight: '700' }}>{onlineCount.toLocaleString()}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={COLORS.green} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01" />
           </svg>
-          <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '9px', color: COLORS.textMuted, letterSpacing: '0.12em' }}>{t('status.server', 'SERVER')}</span>
+          <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 11 : 9, color: COLORS.textMuted, letterSpacing: language === 'fa' ? '0' : '0.12em' }}>{t('status.server', 'SERVER')}</span>
           <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '10px', color: COLORS.green, fontWeight: '700' }}>ONLINE</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={COLORS.goldBright} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2a10 10 0 100 20 10 10 0 000-20z M12 6v6l4 2" />
           </svg>
-          <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '9px', color: COLORS.textMuted, letterSpacing: '0.12em' }}>{t('status.ping', 'PING')}</span>
+          <span style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', fontSize: language === 'fa' ? 11 : 9, color: COLORS.textMuted, letterSpacing: language === 'fa' ? '0' : '0.12em' }}>{t('status.ping', 'PING')}</span>
           <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '10px', color: COLORS.goldBright, fontWeight: '700' }}>{ping}ms</span>
         </div>
       </div>

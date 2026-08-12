@@ -132,7 +132,7 @@ body[data-theme='ares-elite-gold'] {
 
 .font-orbitron { font-family: 'Orbitron', 'Vazirmatn', monospace; }
 .font-rajdhani { font-family: 'Rajdhani', 'Vazirmatn', sans-serif; }
-.font-vazir { font-family: 'Vazirmatn', sans-serif; }
+.font-vazir { font-family: 'Vazirmatn', 'Rajdhani', sans-serif; }
 
 /* Bazino utility classes for theme compatibility */
 .neon-text-glow {

@@ -22,7 +22,7 @@ export default function WelcomeCard({ user, onNavigate }) {
           <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, rgba(212,175,55,0.22), transparent 70%)' }} />
         </div>
 
-        <div style={{ fontFamily: 'Rajdhani,sans-serif', color: '#a07d20', fontSize: '11px', letterSpacing: '0.2em', lineHeight: 1, marginBottom: '4px' }}>
+        <div style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Rajdhani,sans-serif', color: '#a07d20', fontSize: language === 'fa' ? 13 : 11, letterSpacing: language === 'fa' ? '0' : '0.2em', lineHeight: 1, marginBottom: '4px' }}>
           {language === 'fa' ? 'خوش آمدی،' : 'WELCOME BACK,'}
         </div>
         <div style={{
@@ -35,7 +35,7 @@ export default function WelcomeCard({ user, onNavigate }) {
           textShadow: '0 0 18px rgba(212,175,55,0.7), 0 0 6px rgba(240,199,94,0.9)',
           marginBottom: '8px',
         }}>{name.toUpperCase()}</div>
-        <div style={{ color: '#5a5a6a', fontSize: '11px', fontFamily: 'Rajdhani,sans-serif', marginBottom: '14px', letterSpacing: '0.03em' }}>
+        <div style={{ color: '#5a5a6a', fontSize: language === 'fa' ? 13 : 11, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Rajdhani,sans-serif', marginBottom: '14px', letterSpacing: language === 'fa' ? '0' : '0.03em', lineHeight: 1.4 }}>
           {language === 'fa' ? 'آرنا منتظر توست. آماده شو و فتح کن.' : 'The Arena Awaits. Gear Up and Conquer.'}
         </div>
 
@@ -52,7 +52,7 @@ export default function WelcomeCard({ user, onNavigate }) {
                 <circle cx="12" cy="12" r="10" />
                 <text x="12" y="16" textAnchor="middle" fill="#5a3e00" fontSize="11" fontWeight="900">$</text>
               </svg>
-              <span style={{ color: '#a07d20', fontSize: '8px', fontFamily: 'Orbitron,monospace', letterSpacing: '0.1em' }}>
+              <span style={{ color: '#a07d20', fontSize: language === 'fa' ? 11 : 8, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', letterSpacing: language === 'fa' ? '0' : '0.1em' }}>
                 {t('stats.balance', 'BALANCE')}
               </span>
             </div>
@@ -70,7 +70,7 @@ export default function WelcomeCard({ user, onNavigate }) {
               <svg width="10" height="10" viewBox="0 0 20 20">
                 <polygon points="10,1 19,5.5 19,14.5 10,19 1,14.5 1,5.5" fill="#f0c75e" />
               </svg>
-              <span style={{ color: '#a07d20', fontSize: '8px', fontFamily: 'Orbitron,monospace', letterSpacing: '0.1em' }}>
+              <span style={{ color: '#a07d20', fontSize: language === 'fa' ? 11 : 8, fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace', letterSpacing: language === 'fa' ? '0' : '0.1em' }}>
                 {t('stats.points', 'BZ POINTS')}
               </span>
             </div>
@@ -89,11 +89,11 @@ export default function WelcomeCard({ user, onNavigate }) {
             background: 'rgba(212,175,55,0.9)',
             border: 'none',
             cursor: 'pointer',
-            fontFamily: 'Orbitron,monospace',
-            fontSize: '10px',
-            letterSpacing: '0.2em',
+            fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : 'Orbitron,monospace',
+            fontSize: language === 'fa' ? 13 : 10,
+            letterSpacing: language === 'fa' ? '0' : '0.2em',
             color: '#0a0a0f',
-            fontWeight: '900',
+            fontWeight: language === 'fa' ? 700 : 900,
             transition: 'all 0.2s',
             clipPath: 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
             boxShadow: '0 0 18px rgba(212,175,55,0.5)',
