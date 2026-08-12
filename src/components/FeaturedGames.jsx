@@ -51,9 +51,9 @@ export default function FeaturedGames({ sliders = [], onNavigate }) {
                 position: 'absolute', inset: 0,
                 background: 'linear-gradient(90deg, rgba(10,10,15,0.9) 0%, rgba(10,10,15,0.4) 60%, rgba(10,10,15,0.1) 100%)',
               }} />
-              <div style={{ position: 'absolute', bottom: '6px', left: '10px', right: '44px' }}>
-                <div style={{ fontFamily: language === 'fa' ? "'Vazirmatn',sans-serif" : "'Orbitron',monospace", color: COLORS.text, fontSize: language === 'fa' ? '12px' : '10px', fontWeight: '700', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</div>
-                <div style={{ fontFamily: "'Orbitron',monospace", color: tierColor, fontSize: '8px', fontWeight: '700', letterSpacing: '0.12em', marginTop: '2px', textShadow: `0 0 8px ${tierColor}` }}>{tier}</div>
+              <div style={{ position: 'absolute', bottom: '4px', left: '10px', right: '44px', display: 'flex', alignItems: 'baseline', gap: '6px', flexWrap: 'nowrap', overflow: 'hidden' }}>
+                <span style={{ fontFamily: "'Vazirmatn',sans-serif", color: COLORS.text, fontSize: language === 'fa' ? 10 : 10, fontWeight: '600', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flexShrink: 1, minWidth: 0 }}>{name}</span>
+                <span style={{ fontFamily: "'Orbitron',monospace", color: tierColor, fontSize: '7px', fontWeight: '700', letterSpacing: '0.1em', textShadow: `0 0 8px ${tierColor}`, whiteSpace: 'nowrap', flexShrink: 0 }}>{tier}</span>
               </div>
               <div style={{
                 position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)',

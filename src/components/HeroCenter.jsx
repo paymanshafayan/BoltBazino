@@ -83,18 +83,16 @@ export default function HeroCenter({ tournaments = [], onNavigate }) {
           clipPath: 'polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px)',
           overflow: 'hidden',
         }}>
-          {/* Hero character image */}
-          <img
-            src={HERO_IMAGE}
-            alt="hero warrior"
-            style={{
-              position: 'absolute', inset: 0,
-              width: '100%', height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              filter: 'brightness(0.75) contrast(1.15) saturate(1.1)',
-            }}
-          />
+          {/* Hero character image — SVG viewBox for precise centering */}
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 400 500"
+            preserveAspectRatio="xMidYMid meet"
+            style={{ position: 'absolute', inset: 0, filter: 'brightness(0.75) contrast(1.15) saturate(1.1)' }}
+          >
+            <image href="/images/avatar-3.png" x="0" y="0" width="400" height="500" />
+          </svg>
 
           {/* Dark gradient for readability */}
           <div style={{
